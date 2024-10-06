@@ -1,0 +1,153 @@
+body {
+    background-color: #222; /* Overall dark background */
+    color: #fff; /* White text for visibility */
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background-color: #2980b9; 
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1; /* Ensure header is on top */
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0;
+    letter-spacing: 2px;
+}
+
+h2 {
+    color: #3498db; /* Color for headings */
+}
+
+nav {
+    background-color: #2c3e50;
+    padding: 10px 0; /* Adjust padding for better spacing */
+    position: sticky; /* Make nav sticky */
+    top: 0; /* Stick to the top of the viewport */
+    z-index: 2; /* Keep nav above other content */
+}
+
+.card-panel {
+    background-color: #2c3e50; /* Dark background for the card panel */
+    color: #ecf0f1; /* Light text for card content */
+    border-radius: 8px; /* Add some rounded corners for aesthetics */
+    padding: 20px; /* Add padding inside the card */
+}
+
+.nav-wrapper {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: flex-end; /* Right-align nav items */
+    padding: 0 20px; /* Add some padding */
+}
+
+/* Center the brand logo title */
+nav .brand-logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+}
+
+/* Left-align the navigation items */
+nav ul {
+    margin-left: 0; /* Ensure no margin pushes items */
+    margin-right: 20px; /* Slight padding to the right */
+}
+
+/* Ensure mobile menu trigger stays aligned */
+.sidenav-trigger {
+    margin-left: 20px;
+}
+
+nav a {
+    color: #ecf0f1;
+    text-decoration: none;
+    padding: 10px 15px; /* Increase horizontal padding */
+    margin: 0 5px; /* Margin between nav items */
+    transition: color 0.3s;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+nav a:hover {
+    color: #3498db; /* Hover color for nav links */
+}
+
+#nav-mobile {
+    display: flex;
+    align-items: center; /* Center items vertically */
+}
+
+.carousel h2 {
+    color: #3498db;
+    text-align: center;
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.carousel-item img {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    background-color: #2c3e50;
+    padding: 20px;
+    text-align: center;
+    margin-top: auto;
+    color: #ecf0f1;
+}
+
+/* Dropdown Menu Styles */
+.dropdown-content {
+    display: none; /* Hide dropdown initially */
+    position: absolute; /* Position it below the nav */
+    background-color: #2c3e50; /* Match the nav background */
+    min-width: 160px; /* Minimum width for dropdown */
+    z-index: 3; /* Ensure dropdown is above content */
+}
+
+nav ul li:hover .dropdown-content {
+    display: block; /* Show dropdown on hover of parent li */
+}
+
+.dropdown-item {
+    padding: 10px; /* Space between dropdown items */
+    color: #ecf0f1; /* Dropdown item color */
+    text-decoration: none; /* No underline */
+    display: block; /* Stack items */
+}
+
+.dropdown-item:hover {
+    background-color: #3498db; /* Change background on hover */
+}
+
+/* Fix for dropdown menu positioning */
+nav ul li {
+    position: relative; /* Needed for dropdown positioning */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    nav {
+        padding: 5px 0; /* Reduce padding on smaller screens */
+    }
+
+    nav a {
+        padding: 10px; /* Adjust padding for smaller screens */
+        margin: 0 5px; /* Adjust margin for smaller screens */
+    }
+
+    .nav-wrapper {
+        justify-content: space-between; /* Keep space between items */
+    }
+}

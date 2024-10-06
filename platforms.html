@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platforms - Video Game Database</title>
+    <link rel="stylesheet" href="materialize.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-wrapper blue darken-3">
+            <a href="#" class="brand-logo">Video Game App</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="genres.html">Genres</a></li>
+                <li><a href="platforms.html">Platforms</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </nav>    
+
+<!-- Mobile Navigation -->
+<ul class="sidenav" id="mobile-demo">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="games.html">Games</a></li>
+    <li><a href="genres.html">Genres</a></li>
+    <li><a href="platforms.html">Platforms</a></li>
+    <li><a href="about.html">About</a></li>
+</ul>
+
+    <!-- Platforms List -->
+    <div class="container">
+        <h2 class="center-align">Platforms</h2>
+        <div class="row" id="platformsList"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer blue-grey darken-3">
+        <div class="container">
+            <div class="row">
+                <div class="col l6 s12">
+                    <h5 class="white-text">Video Game Database App</h5>
+                    <p class="grey-text text-lighten-4">Your go-to app for game information and reviews.</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2024 Video Game Database App
+            </div>
+        </div>
+    </footer>
+
+    <script src="materialize.min.js"></script>
+    <script src="platforms.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(elems);
+        });
+    </script>
+</body>
+</html>
