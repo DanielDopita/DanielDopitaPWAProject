@@ -6,6 +6,7 @@
     <title>Platforms - Video Game Database</title>
     <link rel="stylesheet" href="materialize.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <!-- Navigation -->
@@ -23,19 +24,21 @@
         </div>
     </nav>    
 
-<!-- Mobile Navigation -->
-<ul class="sidenav" id="mobile-demo">
-    <li><a href="index.html">Home</a></li>
-    <li><a href="games.html">Games</a></li>
-    <li><a href="genres.html">Genres</a></li>
-    <li><a href="platforms.html">Platforms</a></li>
-    <li><a href="about.html">About</a></li>
-</ul>
+    <!-- Mobile Navigation -->
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="games.html">Games</a></li>
+        <li><a href="genres.html">Genres</a></li>
+        <li><a href="platforms.html">Platforms</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
 
     <!-- Platforms List -->
     <div class="container">
-        <h2 class="center-align">Platforms</h2>
-        <div class="row" id="platformsList"></div>
+        <h2 class="center-align white-text">Platforms</h2>
+        <div class="row" id="platformsList">
+            <!-- Platform items will be injected here by JavaScript -->
+        </div>
     </div>
 
     <!-- Footer -->
@@ -63,5 +66,18 @@
             var instances = M.Sidenav.init(elems);
         });
     </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.error('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>    
 </body>
 </html>

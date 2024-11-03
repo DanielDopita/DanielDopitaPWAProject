@@ -1,153 +1,154 @@
+/* General styles */
 body {
-    background-color: #222; /* Overall dark background */
-    color: #fff; /* White text for visibility */
     font-family: 'Roboto', sans-serif;
+    background-color: #121212;
+    color: #ffffff;
     margin: 0;
     padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
 }
 
-header {
-    background-color: #2980b9; 
-    padding: 20px;
+header h1 {
     text-align: center;
-    position: relative;
-    z-index: 1; /* Ensure header is on top */
+    margin: 20px 0;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #f5f5f5;
 }
 
-h1 {
-    font-size: 2em;
-    margin: 0;
-    letter-spacing: 2px;
+.carousel {
+    height: 50vh; /* Set carousel height to 50% of viewport height */
 }
 
-h2 {
-    color: #3498db; /* Color for headings */
+/* Ensure carousel images are displayed properly */
+.carousel .carousel-item img {
+    width: 100%;
+    height: auto; /* Allow height to adjust based on width */
+    max-height: none; /* Disable max height to prevent cut-off */
+    object-fit: cover; /* Maintain aspect ratio and cover the area */
+    border-radius: 8px;
 }
 
+/* Game thumbnails for games.html */
+.thumbnail {
+    max-width: 100%;
+    max-height: 150px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05); /* Slightly enlarges on hover */
+}
+
+/* Navbar styles */
 nav {
-    background-color: #2c3e50;
-    padding: 10px 0; /* Adjust padding for better spacing */
-    position: sticky; /* Make nav sticky */
-    top: 0; /* Stick to the top of the viewport */
-    z-index: 2; /* Keep nav above other content */
-}
-
-.card-panel {
-    background-color: #2c3e50; /* Dark background for the card panel */
-    color: #ecf0f1; /* Light text for card content */
-    border-radius: 8px; /* Add some rounded corners for aesthetics */
-    padding: 20px; /* Add padding inside the card */
-}
-
-.nav-wrapper {
-    display: flex;
-    align-items: center; /* Center items vertically */
-    justify-content: flex-end; /* Right-align nav items */
-    padding: 0 20px; /* Add some padding */
-}
-
-/* Center the brand logo title */
-nav .brand-logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 1.5rem;
-}
-
-/* Left-align the navigation items */
-nav ul {
-    margin-left: 0; /* Ensure no margin pushes items */
-    margin-right: 20px; /* Slight padding to the right */
-}
-
-/* Ensure mobile menu trigger stays aligned */
-.sidenav-trigger {
-    margin-left: 20px;
+    padding: 0 20px;
+    background-color: #0d47a1;
 }
 
 nav a {
-    color: #ecf0f1;
-    text-decoration: none;
-    padding: 10px 15px; /* Increase horizontal padding */
-    margin: 0 5px; /* Margin between nav items */
-    transition: color 0.3s;
-    font-weight: bold;
-    letter-spacing: 1px;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 500;
 }
 
-nav a:hover {
-    color: #3498db; /* Hover color for nav links */
+.nav-wrapper .brand-logo {
+    font-size: 1.5rem;
+    padding-left: 10px;
 }
 
-#nav-mobile {
+/* Rating and review section */
+.rating-review {
     display: flex;
-    align-items: center; /* Center items vertically */
-}
-
-.carousel h2 {
-    color: #3498db;
-    text-align: center;
-    font-size: 1.8em;
-    margin-bottom: 20px;
-}
-
-.carousel-item img {
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-footer {
-    background-color: #2c3e50;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
+}
+
+.rating-stars {
+    font-size: 1.5rem;
+    color: #ffd700; /* Gold color for stars */
+    margin-bottom: 10px;
+}
+
+.review-input textarea {
+    width: 80%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 10px;
+}
+
+.review-submit {
+    padding: 10px 20px;
+    background-color: #2196f3;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.review-submit:hover {
+    background-color: #1976d2;
+}
+
+/* Footer styles */
+footer {
+    background-color: #0d47a1;
+    color: #ffffff;
+    padding: 20px 0;
     text-align: center;
-    margin-top: auto;
-    color: #ecf0f1;
 }
 
-/* Dropdown Menu Styles */
-.dropdown-content {
-    display: none; /* Hide dropdown initially */
-    position: absolute; /* Position it below the nav */
-    background-color: #2c3e50; /* Match the nav background */
-    min-width: 160px; /* Minimum width for dropdown */
-    z-index: 3; /* Ensure dropdown is above content */
+footer h5 {
+    font-weight: 700;
 }
 
-nav ul li:hover .dropdown-content {
-    display: block; /* Show dropdown on hover of parent li */
+footer p {
+    color: #bdbdbd;
 }
 
-.dropdown-item {
-    padding: 10px; /* Space between dropdown items */
-    color: #ecf0f1; /* Dropdown item color */
-    text-decoration: none; /* No underline */
-    display: block; /* Stack items */
+.footer-copyright {
+    background-color: #0a3a74;
+    padding: 10px 0;
 }
 
-.dropdown-item:hover {
-    background-color: #3498db; /* Change background on hover */
+/* Background for game descriptions */
+.game-description {
+    background-color: #1e1e1e; /* Set a dark background for better contrast */
+    padding: 10px;
+    border-radius: 5px;
 }
 
-/* Fix for dropdown menu positioning */
-nav ul li {
-    position: relative; /* Needed for dropdown positioning */
-}
-
-/* Media queries for responsiveness */
+/* Media Queries */
 @media (max-width: 768px) {
     nav {
-        padding: 5px 0; /* Reduce padding on smaller screens */
+        padding: 5px 0;
     }
 
     nav a {
-        padding: 10px; /* Adjust padding for smaller screens */
-        margin: 0 5px; /* Adjust margin for smaller screens */
+        padding: 10px;
+        margin: 0 5px;
     }
 
     .nav-wrapper {
-        justify-content: space-between; /* Keep space between items */
+        justify-content: space-between;
+    }
+
+    .carousel {
+        height: 40vh; /* Adjust height for smaller screens */
+    }
+}
+
+@media (min-width: 992px) {
+    .carousel {
+        height: 60vh; /* Increase height for larger screens */
+    }
+
+    .carousel .carousel-item img {
+        object-fit: cover; /* Maintain aspect ratio */
     }
 }

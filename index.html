@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="materialize.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <header>
@@ -38,9 +39,20 @@
 
     <section id="popularGames" class="carousel carousel-slider center">
         <h2>Popular Games</h2>
-        <a class="carousel-item" href="#"><img src="game1.jfif" alt="Popular Game Image 1"></a>
-        <a class="carousel-item" href="#"><img src="game2.jfif" alt="Popular Game Image 2"></a>
-        <a class="carousel-item" href="#"><img src="game3.jfif" alt="Popular Game Image 3"></a>
+        <a class="carousel-item" href="#"><img src="game1.jfif" alt="Popular Game Image 1" style="width:100%; height:auto;"></a>
+        <a class="carousel-item" href="#"><img src="game2.jfif" alt="Popular Game Image 2" style="width:100%; height:auto;"></a>
+        <a class="carousel-item" href="#"><img src="game3.jfif" alt="Popular Game Image 3" style="width:100%; height:auto;"></a>
+    </section>
+
+    <!-- Rating and Review Section -->
+    <section class="rating-review">
+        <div class="rating-stars">
+            &#9733; &#9733; &#9733; &#9733; &#9734; <!-- Example rating -->
+        </div>
+        <div class="review-input">
+            <textarea placeholder="Leave your review here..." rows="4"></textarea>
+        </div>
+        <button class="review-submit">Submit Review</button>
     </section>
 
     <footer>
@@ -72,5 +84,18 @@
             var instances = M.Sidenav.init(elems);
         });
     </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.error('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>    
 </body>
 </html>

@@ -4,7 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
         { name: 'Adventure', description: 'Explore new worlds and stories' },
         { name: 'RPG', description: 'Immersive role-playing experiences' },
         { name: 'Horror', description: 'Thrilling and scary games' }
-        // Add more genres as needed
     ];
 
     const genreListSection = document.getElementById('genreList');

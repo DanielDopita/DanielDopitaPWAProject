@@ -1,14 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Sample data for platforms
     const platformsData = [
         { name: 'PC', description: 'Personal Computer gaming platform' },
         { name: 'PlayStation', description: 'Sony gaming console' },
         { name: 'Xbox', description: 'Microsoft gaming console' },
         { name: 'Nintendo Switch', description: 'Hybrid gaming console by Nintendo' }
-        // Add more platforms as needed
     ];
 
-    // Function to create platform cards
     function createPlatformCards(platforms, containerId) {
         const container = document.getElementById(containerId);
 
@@ -28,6 +25,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Populate genres list
     createPlatformCards(platformsData, 'platformsList');
 });

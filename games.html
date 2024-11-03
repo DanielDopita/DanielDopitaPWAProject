@@ -6,12 +6,17 @@
     <title>Games - Video Game Database</title>
     <link rel="stylesheet" href="materialize.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    <!-- Navigation -->
+    <header>
+        <h1>Games</h1>
+    </header>
+
     <nav>
         <div class="nav-wrapper blue darken-3">
-            <a href="#" class="brand-logo">Video Game App</a>
+            <a href="index.html" class="brand-logo">Video Game App</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="index.html">Home</a></li>
@@ -21,9 +26,8 @@
                 <li><a href="about.html">About</a></li>
             </ul>
         </div>
-    </nav>    
+    </nav>
 
-    <!-- Mobile Navigation -->
     <ul class="sidenav" id="mobile-demo">
         <li><a href="index.html">Home</a></li>
         <li><a href="games.html">Games</a></li>
@@ -32,14 +36,13 @@
         <li><a href="about.html">About</a></li>
     </ul>
 
-    <!-- Games List -->
-    <div class="container">
-        <h2 class="center-align">Games</h2>
-        <div class="row" id="gamesList"></div>
-    </div>
+    <section id="game-list" class="container">
+        <div class="row">
+            <!-- Game items will be injected here by JavaScript -->
+        </div>
+    </section>
 
-    <!-- Footer -->
-    <footer class="page-footer blue-grey darken-3">
+    <footer>
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
@@ -62,6 +65,68 @@
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const gameList = document.getElementById('game-list');
+            const games = getGames(); // Assuming this function retrieves game data from games.js
+
+            games.forEach(game => {
+                const gameItem = document.createElement('div');
+                gameItem.classList.add('col', 's12', 'm6', 'l4'); // Responsive column sizes
+
+                gameItem.innerHTML = `
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="${game.image}" alt="${game.name}" class="responsive-img">
+                        </div>
+                        <div class="card-content game-description">
+                            <span class="card-title">${game.name}</span>
+                            <p>Price: $${game.price}</p>
+                            <p>Genre: ${game.genre}</p>
+                        </div>
+                    </div>
+                `;
+
+                gameList.appendChild(gameItem);
+            });
+        });
+
+        function getGames() {
+            return [
+                {
+                    name: "Baldur's Gate 3",
+                    price: '59.99',
+                    genre: 'Action',
+                    image: 'game1.jfif'
+                },
+                {
+                    name: 'The Legend of Zelda: Tears of The Kingdom',
+                    price: '49.99',
+                    genre: 'Adventure',
+                    image: 'game2.jfif'
+                },
+                {
+                    name: 'Resident Evil 4',
+                    price: '39.99',
+                    genre: 'Puzzle',
+                    image: 'game3.jfif'
+                }
+                // Add more games as needed
+            ];
+        }
     </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.error('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>    
 </body>
 </html>

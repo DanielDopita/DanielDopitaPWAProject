@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     const gamesData = [
-        { title: "Baldur's Gate 3", genre: 'Rpg', price: '$59.99', imgSrc: 'game1.jfif' },
+        { title: "Baldur's Gate 3", genre: 'RPG', price: '$59.99', imgSrc: 'game1.jfif' },
         { title: 'The Legend of Zelda: Tears of the Kingdom', genre: 'Action-Adventure', price: '$69.99', imgSrc: 'game2.jfif' },
         { title: 'Resident Evil 4', genre: 'Horror', price: '$59.99', imgSrc: 'game3.jfif' }
     ];
@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     gamesData.forEach(game => {
         const gameCard = document.createElement('div');
-        gameCard.className = 'game-card';
+        gameCard.className = 'game-card'; // Ensure you have a CSS class to style this
 
         gameCard.innerHTML = `
-            <img src="${game.imgSrc}" alt="${game.title}">
-            <p>${game.title}</p>
+            <img src="${game.imgSrc}" alt="${game.title}" class="responsive-img"> <!-- Optional: Add a class for image responsiveness -->
+            <p><strong>${game.title}</strong></p>
             <p>Genre: ${game.genre}</p>
             <p>Price: ${game.price}</p>
         `;
@@ -21,3 +21,4 @@ document.addEventListener('DOMContentLoaded', function() {
         gamesListSection.appendChild(gameCard);
     });
 });
+

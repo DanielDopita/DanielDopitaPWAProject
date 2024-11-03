@@ -6,6 +6,7 @@
     <title>About - Video Game Database</title>
     <link rel="stylesheet" href="materialize.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <!-- Navigation -->
@@ -21,7 +22,7 @@
                 <li><a href="about.html">About</a></li>
             </ul>
         </div>
-    </nav>    
+    </nav>
 
     <!-- Mobile Navigation -->
     <ul class="sidenav" id="mobile-demo">
@@ -35,13 +36,13 @@
     <!-- About Section -->
     <div class="container">
         <div class="section">
-            <h2 class="center-align">About Me</h2>
+            <h2 class="center-align white-text">About Me</h2>
             <div class="row">
                 <div class="col s12 m8 offset-m2">
-                    <div class="card-panel"> <!-- Removed the specific background class -->
-                        <p>Welcome to my Video Game Database! My name is Daniel Dopita, and I am a Senior web development major at Fort Hays State University with a love for gaming. I'm passionate about providing information on a wide range of video games, genres, and platforms. My goal is to help you discover and explore the exciting world of gaming.</p>
-                        <p>Feel free to browse my website, explore the latest games, and learn more about different genres and gaming platforms. If you have any questions or suggestions, don't hesitate to contact me.</p>
-                        <p class="center-align">My Email: <a href="mailto:dndaniel@mail.fhsu.edu">dndaniel@mail.fhsu.edu</a></p>
+                    <div class="card-panel grey darken-3"> <!-- Added a background color -->
+                        <p class="white-text">Welcome to my Video Game Database! My name is Daniel Dopita, and I am a Senior web development major at Fort Hays State University with a love for gaming. I'm passionate about providing information on a wide range of video games, genres, and platforms. My goal is to help you discover and explore the exciting world of gaming.</p>
+                        <p class="white-text">Feel free to browse my website, explore the latest games, and learn more about different genres and gaming platforms. If you have any questions or suggestions, don't hesitate to contact me.</p>
+                        <p class="center-align white-text">My Email: <a href="mailto:dndaniel@mail.fhsu.edu" class="blue-text">dndaniel@mail.fhsu.edu</a></p>
                     </div>
                 </div>
             </div>
@@ -72,5 +73,18 @@
             var instances = M.Sidenav.init(elems);
         });
     </script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered with scope:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.error('Service Worker registration failed:', error);
+                    });
+            });
+        }
+    </script>    
 </body>
 </html>
