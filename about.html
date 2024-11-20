@@ -86,5 +86,12 @@
             });
         }
     </script>    
+    <script type="module" src="firebaseDB.js"></script> 
+    <script src="indexedDB.js"></script>
+    <script type="module" src="sync.js" type="module"></script>
+    <script>
+        // Initialize the connection monitoring when the page loads
+        monitorConnectionStatus();  // This will set up the online/offline listeners
+      </script>
 </body>
 </html>
