@@ -12,6 +12,8 @@
 <body>
     <header>
         <h1>Video Game Database</h1>
+        <button id="signInBtn">Sign In</button>
+        <button id="signOutBtn" style="display:none;">Sign Out</button>
     </header>
 
     <nav>
@@ -28,7 +30,6 @@
         </div>
     </nav>    
 
-    <!-- Mobile Navigation -->
     <ul class="sidenav" id="mobile-demo">
         <li><a href="index.html">Home</a></li>
         <li><a href="games.html">Games</a></li>
@@ -44,7 +45,6 @@
         <a class="carousel-item" href="#"><img src="game3.jfif" alt="Popular Game Image 3" style="width:100%; height:auto;"></a>
     </section>
 
-    <!-- Rating and Review Section -->
     <section class="rating-review">
         <div class="rating-stars">
             &#9733; &#9733; &#9733; &#9733; &#9734; <!-- Example rating -->
@@ -76,33 +76,86 @@
         document.addEventListener('DOMContentLoaded', function() {
             const carouselElems = document.querySelectorAll('.carousel');
             M.Carousel.init(carouselElems, { fullWidth: true, indicators: true });
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
+
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
         });
     </script>
+    
+    <!-- Firebase and Firebase Authentication (modular imports) -->
+    <script type="module">
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-auth.js';
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDKL_txg9AsDrMMq5YDyZerpsLI-VJaJj8",
+            authDomain: "taskmanager-f5d61.firebaseapp.com",
+            projectId: "taskmanager-f5d61",
+            storageBucket: "taskmanager-f5d61.firebasestorage.app",
+            messagingSenderId: "908040986820",
+            appId: "1:908040986820:web:d733aacfc4bb513c21e991",
+            measurementId: "G-MWF8DZQSF0"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const signInBtn = document.getElementById('signInBtn');
+        const signOutBtn = document.getElementById('signOutBtn');
+
+        signInBtn.addEventListener('click', () => {
+            const provider = new GoogleAuthProvider();
+            signInWithPopup(auth, provider)
+                .then(result => {
+                    console.log('User signed in');
+                    signInBtn.style.display = 'none';
+                    signOutBtn.style.display = 'inline-block';
+                })
+                .catch(error => {
+                    console.error('Error signing in:', error);
+                });
+        });
+
+        signOutBtn.addEventListener('click', () => {
+            signOut(auth)
+                .then(() => {
+                    console.log('User signed out');
+                    signInBtn.style.display = 'inline-block';
+                    signOutBtn.style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Error signing out:', error);
+                });
+        });
+
+        // Firebase state listener
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                console.log('User is signed in:', user.uid);
+                // Store user data in IndexedDB and Firebase sync
+            } else {
+                console.log('User is signed out');
+            }
+        });
+    </script>
+
+    <!-- Service Worker Registration -->
     <script>
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then((registration) => {
-                        console.log('Service Worker registered with scope:', registration.scope);
-                    })
-                    .catch((error) => {
-                        console.error('Service Worker registration failed:', error);
-                    });
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/sw.js').then(function (registration) {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                }).catch(function (error) {
+                    console.log('Service Worker registration failed:', error);
+                });
             });
         }
-    </script>   
-    <script type="module" src="firebaseDB.js"></script> 
-    <script src="indexedDB.js"></script>
-    <script type="module" src="sync.js" type="module"></script>
-    <script>
-        // Initialize the connection monitoring when the page loads
-        monitorConnectionStatus();  // This will set up the online/offline listeners
-      </script>
+    </script>
+
+    <!-- Module Scripts -->
+    <script type="module" src="firebaseDB.js"></script>
+    <script type="module" src="indexedDB.js"></script>
+    <script type="module" src="sync.js"></script>
 </body>
 </html>

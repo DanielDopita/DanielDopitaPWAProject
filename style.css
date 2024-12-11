@@ -1,10 +1,11 @@
-/* General styles */
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #121212;
-    color: #ffffff;
+/* Global styles (applied across all pages) */
+html, body {
+    background-color: #121212 !important; /* Dark background for both body and html */
     margin: 0;
     padding: 0;
+    height: 100%; /* Ensure full height for the page */
+    font-family: 'Roboto', sans-serif;
+    color: #e0e0e0; /* Slight contrast for better readability */
 }
 
 header h1 {
@@ -15,17 +16,33 @@ header h1 {
     color: #f5f5f5;
 }
 
+/* Carousel styles */
 .carousel {
     height: 50vh; /* Set carousel height to 50% of viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Ensure carousel images are displayed properly */
 .carousel .carousel-item img {
     width: 100%;
-    height: auto; /* Allow height to adjust based on width */
-    max-height: none; /* Disable max height to prevent cut-off */
-    object-fit: cover; /* Maintain aspect ratio and cover the area */
+    height: 100%;
+    object-fit: cover; /* Ensure images cover the area */
     border-radius: 8px;
+}
+
+/* Card and card-content styles */
+.card {
+    background-color: #1e1e1e; /* Dark background for cards */
+    color: #e0e0e0; /* Text color for the card */
+    border-radius: 8px; /* Rounded corners for the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Card shadow */
+}
+
+.card-content {
+    background-color: #1e1e1e; /* Dark background for content inside cards */
+    color: #e0e0e0; /* Text color for content */
+    padding: 15px;
 }
 
 /* Game thumbnails for games.html */
@@ -35,11 +52,12 @@ header h1 {
     cursor: pointer;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s; /* Added box-shadow transition */
 }
 
 .thumbnail:hover {
     transform: scale(1.05); /* Slightly enlarges on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
 }
 
 /* Navbar styles */
@@ -65,6 +83,7 @@ nav a {
     flex-direction: column;
     align-items: center;
     padding: 20px;
+    color: white; /* Sets the text color for the entire section */
 }
 
 .rating-stars {
@@ -79,6 +98,8 @@ nav a {
     border-radius: 5px;
     border: none;
     margin-bottom: 10px;
+    background-color: #333; /* Optional: change background for better contrast */
+    color: white; /* Ensures text inside textarea is white */
 }
 
 .review-submit {
@@ -123,6 +144,40 @@ footer p {
     border-radius: 5px;
 }
 
+/* Button styles */
+#updateButton, #createButton {
+    display: inline-block; /* Ensure buttons are displayed inline */
+    visibility: visible; /* Ensure buttons are visible */
+    opacity: 1; /* Ensure buttons are fully visible */
+    background-color: #2196F3; /* Button color */
+    color: white; /* Button text color */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 10px 0; /* Add space between buttons */
+}
+
+#updateButton:hover, #createButton:hover {
+    background-color: #1976D2; /* Darken on hover */
+}
+
+/* Ensure consistent text color */
+.input-field, 
+.input-field * {
+    color: inherit; /* Inherit color from parent or root */
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+      'FILL' 0,
+      'wght' 400,
+      'GRAD' 0,
+      'opsz' 24;
+    cursor: pointer; /* Makes the icon clickable */
+  }
+  
+
 /* Media Queries */
 @media (max-width: 768px) {
     nav {
@@ -141,6 +196,19 @@ footer p {
     .carousel {
         height: 40vh; /* Adjust height for smaller screens */
     }
+
+    .carousel .carousel-item img {
+        object-fit: cover;
+    }
+
+    .card {
+        margin-bottom: 15px; /* Add space between cards */
+    }
+
+    .thumbnail {
+        max-width: 100%;
+        max-height: 120px; /* Make thumbnail images smaller on mobile */
+    }
 }
 
 @media (min-width: 992px) {
@@ -151,18 +219,8 @@ footer p {
     .carousel .carousel-item img {
         object-fit: cover; /* Maintain aspect ratio */
     }
-}
 
-.rating-review {
-    color: white; /* Sets the text color for the entire section */
-}
-
-.review-input textarea {
-    background-color: #333; /* Optional: change background for better contrast */
-    color: white; /* Ensures text inside textarea is white */
-}
-
-.review-submit {
-    background-color: #2196F3; /* Change button background color as needed */
-    color: white; /* Sets button text color to white */
+    .card {
+        margin-bottom: 20px; /* More space between cards */
+    }
 }

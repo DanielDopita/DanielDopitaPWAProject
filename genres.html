@@ -9,6 +9,11 @@
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <h1>Genres</h1>
+    </header>
+
     <!-- Navigation -->
     <nav>
         <div class="nav-wrapper blue darken-3">
@@ -22,7 +27,7 @@
                 <li><a href="about.html">About</a></li>
             </ul>
         </div>
-    </nav>    
+    </nav>
 
     <!-- Mobile Navigation -->
     <ul class="sidenav" id="mobile-demo">
@@ -33,13 +38,29 @@
         <li><a href="about.html">About</a></li>
     </ul>
 
-    <!-- Genres List -->
-    <div class="container">
-        <h2 class="center-align white-text">Genres</h2>
-        <div class="row" id="genreList">
-            <!-- Genre items will be injected here by JavaScript -->
+    <!-- Genre List -->
+    <section id="genre-list" class="container">
+        <h2>Genres</h2>
+        <div class="row" id="genresList">
+            <!-- Genres will be injected here -->
         </div>
+
+        <!-- Add CRUD operations section -->
+<div id="crudOperations" class="section">
+    <h5>Manage Genres</h5>
+    <div class="input-field">
+        <input id="genreName" type="text" required>
+        <label for="genreName">Genre Name</label>
     </div>
+    <div class="input-field">
+        <input id="genreDescription" type="text" required>
+        <label for="genreDescription">Genre Description</label>
+    </div>
+    <button id="createGenreButton" class="btn">Create</button>
+    <button id="updateGenreButton" class="btn">Update</button>
+    <button id="deleteGenreButton" class="btn red">Delete</button>
+</div>
+    </section>
 
     <!-- Footer -->
     <footer class="page-footer blue-grey darken-3">
@@ -59,7 +80,7 @@
     </footer>
 
     <script src="materialize.min.js"></script>
-    <script src="genres.js"></script>
+    <script type="module" src="genres.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.sidenav');
@@ -68,19 +89,17 @@
     </script>
     <script>
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then((registration) => {
-                        console.log('Service Worker registered with scope:', registration.scope);
-                    })
-                    .catch((error) => {
-                        console.error('Service Worker registration failed:', error);
-                    });
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js').then(function (registration) {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                }).catch(function (error) {
+                    console.log('Service Worker registration failed:', error);
+                });
             });
         }
-    </script>    
-    <script type="module" src="firebaseDB.js"></script> 
-    <script src="indexedDB.js"></script>
-    <script type="module" src="sync.js" type="module"></script>
+    </script>
+    <script type="module" src="firebaseDB.js"></script>
+    <script type="module" src="indexedDB.js"></script>
+    <script type="module" src="sync.js"></script>
 </body>
 </html>

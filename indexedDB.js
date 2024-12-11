@@ -1,44 +1,57 @@
-import { openDB } from 'https://cdn.jsdelivr.net/npm/idb@7.1.1/build/esm/index.js';
+import { openDB } from 'https://cdn.jsdelivr.net/npm/idb@8.0.0/+esm';
 
 // Initialize IndexedDB
 const dbPromise = openDB('task-manager', 1, {
   upgrade(db) {
-    db.createObjectStore('tasks', { keyPath: 'id', autoIncrement: true });
+    db.createObjectStore('games', { keyPath: 'id', autoIncrement: true });
   }
 });
 
-// IndexedDB CRUD Functions
+// IndexedDB CRUD Functions (User linked)
 export async function addToIndexedDB(storeName, data) {
   const db = await dbPromise;
-  return db.put(storeName, data);
+  try {
+    const tx = db.transaction(storeName, 'readwrite');
+    const store = tx.objectStore(storeName);
+    const result = await store.add(data);
+    await tx.done;
+    return result;
+  } catch (error) {
+    console.error('Error adding to IndexedDB:', error);
+  }
 }
 
-export async function getFromIndexedDB(storeName) {
+export async function getFromIndexedDB(storeName, userId) {
   const db = await dbPromise;
-  return db.getAll(storeName);
+  try {
+    const allData = await db.getAll(storeName);
+    return allData.filter(item => item.userId === userId); // Filter by userId
+  } catch (error) {
+    console.error('Error fetching from IndexedDB:', error);
+  }
 }
 
 export async function updateIndexedDB(storeName, id, newData) {
   const db = await dbPromise;
-  const oldData = await db.get(storeName, id);
-  const updatedData = { ...oldData, ...newData };
-  return db.put(storeName, updatedData);
+  try {
+    const tx = db.transaction(storeName, 'readwrite');
+    const store = tx.objectStore(storeName);
+    const result = await store.put({ ...newData, id });
+    await tx.done;
+    return result;
+  } catch (error) {
+    console.error('Error updating IndexedDB:', error);
+  }
 }
 
 export async function deleteFromIndexedDB(storeName, id) {
   const db = await dbPromise;
-  return db.delete(storeName, id);
-}
-
-// Sync function to upload local data from IndexedDB to Firebase
-export async function syncWithFirebase(callback) {
-  const data = await getFromIndexedDB('tasks');
-  data.forEach(async (task) => {
-    try {
-      await callback(task);
-      console.log(`Task with ID ${task.id} synced.`);
-    } catch (error) {
-      console.error('Error syncing task:', error);
-    }
-  });
+  try {
+    const tx = db.transaction(storeName, 'readwrite');
+    const store = tx.objectStore(storeName);
+    await store.delete(id);
+    await tx.done;
+  } catch (error) {
+    console.error('Error deleting from IndexedDB:', error);
+  }
 }

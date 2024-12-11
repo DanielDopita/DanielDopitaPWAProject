@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Platforms - Video Game Database</title>
     <link rel="stylesheet" href="materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
 </head>
@@ -35,9 +36,25 @@
 
     <!-- Platforms List -->
     <div class="container">
-        <h2 class="center-align white-text">Platforms</h2>
+        <h2 class="center-align">Platforms</h2>
         <div class="row" id="platformsList">
             <!-- Platform items will be injected here by JavaScript -->
+        </div>
+
+        <!-- CRUD Operations -->
+        <div id="crudOperations" class="section">
+            <h5>Manage Platforms</h5>
+            <div class="input-field">
+                <input id="platformName" type="text" required>
+                <label for="platformName">Platform Name</label>
+            </div>
+            <div class="input-field">
+                <input id="platformDescription" type="text" required>
+                <label for="platformDescription">Platform Description</label>
+            </div>
+            <button id="createButton" class="btn">Create</button>
+            <button id="updateButton" class="btn">Update</button>
+            <button id="deleteButton" class="btn red">Delete</button>
         </div>
     </div>
 
@@ -59,7 +76,7 @@
     </footer>
 
     <script src="materialize.min.js"></script>
-    <script src="platforms.js"></script>
+    <script type="module" src="platforms.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.sidenav');
@@ -68,19 +85,17 @@
     </script>
     <script>
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then((registration) => {
-                        console.log('Service Worker registered with scope:', registration.scope);
-                    })
-                    .catch((error) => {
-                        console.error('Service Worker registration failed:', error);
-                    });
+          window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/sw.js').then(function (registration) {
+              console.log('Service Worker registered with scope:', registration.scope);
+            }).catch(function (error) {
+              console.log('Service Worker registration failed:', error);
             });
+          });
         }
-    </script>    
+      </script>
     <script type="module" src="firebaseDB.js"></script> 
-    <script src="indexedDB.js"></script>
-    <script type="module" src="sync.js" type="module"></script>
+    <script type="module" src="indexedDB.js"></script>
+    <script type="module" src="sync.js"></script>
 </body>
 </html>

@@ -6,7 +6,6 @@
     <title>Games - Video Game Database</title>
     <link rel="stylesheet" href="materialize.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <link rel="manifest" href="manifest.json">
 </head>
 <body>
@@ -37,9 +36,33 @@
     </ul>
 
     <section id="game-list" class="container">
-        <div class="row">
+        <div class="row" id="gamesList">
             <!-- Game items will be injected here by JavaScript -->
         </div>
+
+        <!-- Add CRUD operations section -->
+<div id="crudOperations" class="section">
+    <h5>Manage Games</h5>
+    <div class="input-field">
+        <input id="gameTitle" type="text" required>
+        <label for="gameTitle">Game Title</label>
+    </div>
+    <div class="input-field">
+        <input id="gameGenre" type="text" required>
+        <label for="gameGenre">Game Genre</label>
+    </div>
+    <div class="input-field">
+        <input id="gamePrice" type="text" required>
+        <label for="gamePrice">Game Price</label>
+    </div>
+    <div class="input-field">
+        <input id="gameImg" type="text" required>
+        <label for="gameImg">Game Image URL</label>
+    </div>
+    <button id="createGameButton" class="btn">Create</button>
+    <button id="updateGameButton" class="btn">Update</button>
+    <button id="deleteGameButton" class="btn red">Delete</button>
+</div>
     </section>
 
     <footer>
@@ -59,62 +82,14 @@
     </footer>
 
     <script src="materialize.min.js"></script>
-    <script src="games.js"></script>
+    <script type="module" src="games.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var elems = document.querySelectorAll('.sidenav');
             var instances = M.Sidenav.init(elems);
         });
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const gameList = document.getElementById('game-list');
-            const games = getGames(); // Assuming this function retrieves game data from games.js
-
-            games.forEach(game => {
-                const gameItem = document.createElement('div');
-                gameItem.classList.add('col', 's12', 'm6', 'l4'); // Responsive column sizes
-
-                gameItem.innerHTML = `
-                    <div class="card">
-                        <div class="card-image">
-                            <img src="${game.image}" alt="${game.name}" class="responsive-img">
-                        </div>
-                        <div class="card-content game-description">
-                            <span class="card-title">${game.name}</span>
-                            <p>Price: $${game.price}</p>
-                            <p>Genre: ${game.genre}</p>
-                        </div>
-                    </div>
-                `;
-
-                gameList.appendChild(gameItem);
-            });
-        });
-
-        function getGames() {
-            return [
-                {
-                    name: "Baldur's Gate 3",
-                    price: '59.99',
-                    genre: 'Action',
-                    image: 'game1.jfif'
-                },
-                {
-                    name: 'The Legend of Zelda: Tears of The Kingdom',
-                    price: '49.99',
-                    genre: 'Adventure',
-                    image: 'game2.jfif'
-                },
-                {
-                    name: 'Resident Evil 4',
-                    price: '39.99',
-                    genre: 'Puzzle',
-                    image: 'game3.jfif'
-                }
-                // Add more games as needed
-            ];
-        }
     </script>
+
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -127,9 +102,10 @@
                     });
             });
         }
-    </script>    
-    <script type="module" src="firebaseDB.js"></script> 
-    <script src="indexedDB.js"></script>
-    <script type="module" src="sync.js" type="module"></script>
+    </script>
+
+    <script type="module" src="firebaseDB.js"></script>
+    <script type="module" src="indexedDB.js"></script>
+    <script type="module" src="sync.js"></script>
 </body>
 </html>

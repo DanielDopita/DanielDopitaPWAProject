@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Video Game Database</title>
     <link rel="stylesheet" href="materialize.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.json">
 </head>
@@ -75,19 +76,17 @@
     </script>
     <script>
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then((registration) => {
-                        console.log('Service Worker registered with scope:', registration.scope);
-                    })
-                    .catch((error) => {
-                        console.error('Service Worker registration failed:', error);
-                    });
+          window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/sw.js').then(function (registration) {
+              console.log('Service Worker registered with scope:', registration.scope);
+            }).catch(function (error) {
+              console.log('Service Worker registration failed:', error);
             });
+          });
         }
-    </script>    
+      </script>    
     <script type="module" src="firebaseDB.js"></script> 
-    <script src="indexedDB.js"></script>
+    <script type="module" src="indexedDB.js"></script>
     <script type="module" src="sync.js" type="module"></script>
     <script>
         // Initialize the connection monitoring when the page loads

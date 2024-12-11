@@ -2,48 +2,46 @@ import { addToIndexedDB } from './indexedDB.js';
 import { addToFirebase } from './firebaseDB.js';
 
 document.addEventListener('DOMContentLoaded', function() {
-    const genresData = [
-        { name: 'Action', description: 'Exciting and fast-paced games' },
-        { name: 'Adventure', description: 'Explore new worlds and stories' },
-        { name: 'RPG', description: 'Immersive role-playing experiences' },
-        { name: 'Horror', description: 'Thrilling and scary games' }
-    ];
+  const genresData = [
+    { name: 'Action', description: 'Fast-paced games focused on physical challenges' },
+    { name: 'Adventure', description: 'Games focused on exploration and narrative' },
+    { name: 'Role-Playing', description: 'Games with in-depth character development' },
+    { name: 'Strategy', description: 'Games focused on tactical gameplay' }
+  ];
 
-    const genreListSection = document.getElementById('genreList');
+  const genresListSection = document.getElementById('genresList');
+  genresListSection.style.display = 'flex';
+  genresListSection.style.flexWrap = 'wrap'; // Allow genres to wrap
 
-    genresData.forEach(genre => {
-        const genreCard = document.createElement('div');
-        genreCard.classList.add('genre-card');
+  genresData.forEach(genre => {
+    const genreCard = document.createElement('div');
+    genreCard.className = 'col s12 m6 l4'; // Materialize grid classes for responsiveness
+    genreCard.innerHTML = 
+      `<div class="card">
+        <div class="card-content">
+          <p><strong>${genre.name}</strong></p>
+          <p>${genre.description}</p>
+        </div>
+      </div>`;
+    genresListSection.appendChild(genreCard);
+  });
 
-        const genreName = document.createElement('h2');
-        genreName.textContent = genre.name;
-
-        const genreDescription = document.createElement('p');
-        genreDescription.textContent = genre.description;
-
-        genreCard.appendChild(genreName);
-        genreCard.appendChild(genreDescription);
-        genreListSection.appendChild(genreCard);
-    });
-
-    // Example: Create a new game record
-    const newGame = { title: 'Cyberpunk 2077', genre: 'RPG', platform: 'PC' };
-    createGameRecord(newGame);
+  // Example: Create a new genre record
+  const newGenre = { name: 'Simulation', description: 'Games that mimic real-world activities' };
+  createGenreRecord(newGenre);
 });
 
-async function createGameRecord(gameData) {
+async function createGenreRecord(genreData) {
   if (navigator.onLine) {
     try {
-      // Add to Firebase if online
-      await addToFirebase('games', gameData);
-      console.log('Data added to Firebase');
+      const docId = await addToFirebase('genres', genreData);
+      console.log('Data added to Firebase with ID:', docId);
     } catch (error) {
       console.error('Error adding to Firebase:', error);
     }
   } else {
     try {
-      // Fallback to IndexedDB if offline
-      await addToIndexedDB('games', gameData);
+      await addToIndexedDB('genres', genreData);
       console.log('Data added to IndexedDB for later syncing');
     } catch (error) {
       console.error('Error adding to IndexedDB:', error);
